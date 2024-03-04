@@ -28,9 +28,9 @@ function App() {
   const calculate = (e) => {
     e.preventDefault()
     if (weight < 1 || height < 1) {
-
+      alert(`Please enter values`)
     }
-    else {
+    else {     
       const calculatedBmi = weight / ((height / 100) ** 2)
       setBmi(calculatedBmi)
       //console.log(bmi);
@@ -118,9 +118,9 @@ function App() {
                 </div>
               </div>
 
-              <div className='d-flex row align-items-center justify-content-center'>
-                <div id='error' style={{ display: `` }} className='text-danger error rounded w-75' />
-              </div>
+              {/* <div className='d-flex row align-items-center justify-content-center'>
+                <div id='error' style={{ display: `none` }} className='text-center p-2 error  w-50' />
+              </div> */}
 
             </div>
             <div className='d-flex justify-content-between bg- w-100 '>

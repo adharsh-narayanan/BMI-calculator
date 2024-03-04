@@ -27,13 +27,14 @@ input {
   font-weight: 800;
   padding: 10px;
 }
-.error{
-  background-color: #fdf4f43f;
+/* .error{
+  background-color: #ffffffbc;
   margin: 0;
   border: 0;
-  height: 30px;
-  padding: 20px;
-}
+  height: 50px;
+  font-size: 20px;  
+  
+} */
 
 .unit {
   color: rgb(179, 179, 179);
