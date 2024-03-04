@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Navbar } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
-import AccordionHeader from 'react-bootstrap/AccordionHeader'
+
 
 
 
@@ -13,24 +13,32 @@ function App() {
   const [weight, setWeight] = useState(0)
   const [bmi, setBmi] = useState(0)
   const [verdict, setVerdict] = useState('')
+  const[isHeight,setIsHeight]=useState(false)
+  const[isWeight,SetIsWeight]=useState(false)
 
 
-  /*  const handleChange = (e) =>{
+   const handleChange = (e) =>{
      const{name,value}=e.target
-     setHeight(value)
-     setWeight(value)
+      if(name=='height'){
+        setHeight(value)    
+        setIsHeight(true) 
+      }
+      if(name=='weight'){
+        setWeight(value)
+        SetIsWeight(true)
+      }
  
      // console.log(name);
      // console.log(value);
  
-   } */
+   }
 
   const calculate = (e) => {
     e.preventDefault()
     if (weight < 1 || height < 1) {
       alert(`Please enter values`)
     }
-    else {     
+    else {         
       const calculatedBmi = weight / ((height / 100) ** 2)
       setBmi(calculatedBmi)
       //console.log(bmi);
@@ -72,6 +80,8 @@ function App() {
     setBmi(0)
     setVerdict('')
     bmi_bar.style.left = '0%'
+    setIsHeight(false)
+    setIsHeight(false)
   }
 
   const show = () => {
@@ -107,14 +117,14 @@ function App() {
               <div className='col-md-6 col-sm-6 '>
                 <h5 className='mb-4' htmlFor="">Height (cm)</h5>
                 <div className='d-flex mb-4'>
-                  <input id='height' placeholder='enter height' name='height' value={height || ''} onChange={(e) => { setHeight(e.target.value) }} className='form-control' type="number" min="50" max="250" /><span className='ms-2 unit'  >cm</span>
+                  <input id='height' placeholder='enter height' name='height' value={height || ''} onChange={(e) => {handleChange(e) }} className='form-control' type="number" min="50" max="250" /><span className='ms-2 unit'  >cm</span>
                 </div>
               </div>
 
               <div className='col-md-6 mb-3 col-sm-6'>
                 <h5 className='mb-4' htmlFor="">Weight (kg)</h5>
                 <div className='d-flex'>
-                  <input id='weight' placeholder='enter weight' name='weight' value={weight || ''} onChange={(e) => { setWeight(e.target.value) }} className='form-control' type="number" min="5" max="200" /><span className=' ms-2 unit' >kg</span>
+                  <input id='weight' placeholder='enter weight' name='weight' value={weight || ''} onChange={(e) => {handleChange(e)  }} className='form-control' type="number" min="5" max="200" /><span className=' ms-2 unit' >kg</span>
                 </div>
               </div>
 
@@ -126,7 +136,7 @@ function App() {
             <div className='d-flex justify-content-between bg- w-100 '>
 
 
-              <Button className='mb-3 button w-75 me-2' type='submit' variant="dark">Calculate BMI</Button>
+              <Button className='mb-3 button w-75 me-2' type='submit' variant="dark" disabled={isHeight&&isWeight?false:true}>Calculate BMI</Button>
 
               <Button className='mb-3 button w-50' onClick={reset} variant="warning">Reset</Button>
 
